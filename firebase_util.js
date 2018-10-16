@@ -1,35 +1,41 @@
-
-
 var db = firebase.firestore();
-
+var chinese_sentence = [];
 //데이터 불러오기
 (function loadData () {
   var docRef = db.collection('conversation')
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        console.log('doc id : ' + doc.data());
+        //console.log('doc id : ' + doc.data());
         db.collection('conversation').doc(doc.id).collection('sentence')
           .get()
           .then((querySnapshot) => {
             querySnapshot.forEach((sentence) => {
-              console.log(sentence.data());
-              // document.write(objToString(sentence.data()));
+              chinese_sentence.push(objToChinese(sentence.data()));
             })
+          })
+          .then(()=>{
+            loadLeftFragment();
           })
       });
     });}
   )();
 
-function uploadData () {
+
+//데이터 보내기
+function uploadData() {
+  var rightbody = document.getElementById("right");
+  var chinese = document.getElementById("chinese").value;
+  var korean = document.getElementById("korean").value;
+  var pinyin = document.getElementById("pinyin").value;
   db.collection('conversation')
     .doc('2ECYwxhjTSL86FQ1f4J7')
     .collection('sentence')
     .add({
-      'korean' : '내일 밥먹자',
-      'chinese': '我明天要吃午饭。',
-      'pinyin': 'Wǒ míngtiān yào chī wǔfàn.',
-      'audio': 'aisfhsao',
+      'korean' : korean,
+      'chinese': chinese,
+      'pinyin': pinyin,
+      'audio': 'random',
       'seq': 2
     })
     .then(function (docRef) {
@@ -40,11 +46,32 @@ function uploadData () {
     });
 }
 
+
+
+function loadLeftFragment(){
+  var leftBody = document.getElementById("left");
+  for(var i=0; i<chinese_sentence.length; i++){
+     var paragraph = document.createElement('p');
+     paragraph.textContent = 'A : ' + chinese_sentence[i];
+     leftBody.appendChild(paragraph);
+  }
+}
+
 function objToString(obj) {
   var str = '';
   for (var p in obj) {
     if (obj.hasOwnProperty(p)) {
       str += p + '::' + obj[p] + '\n';
+    }
+  }
+  return str;
+}
+
+function objToChinese(obj){
+  var str = '';
+  for (var p in obj) {
+    if(obj.hasOwnProperty(p) && p=="chinese"){
+      str += obj[p] + '\n';
     }
   }
   return str;
