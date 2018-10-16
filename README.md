@@ -1,2 +1,2 @@
-# Palm-Korea-Quiz-Builder
+# 팜코리아 문제제작도구
 개발자 : 문태근, 한상욱 
