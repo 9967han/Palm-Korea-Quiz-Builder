@@ -8,15 +8,15 @@ var chinese_sentence = [];
       querySnapshot.forEach((doc) => {
         //console.log('doc id : ' + doc.data());
         db.collection('conversation').doc(doc.id).collection('sentence')
-          .get()
-          .then((querySnapshot) => {
+	  .orderBy('timestamp', 'desc')
+          .onSnapshot((querySnapshot) => {
+	    chinese_sentence = []
             querySnapshot.forEach((sentence) => {
               chinese_sentence.push(objToChinese(sentence.data()));
             })
+	    loadLeftFragment();
           })
-          .then(()=>{
-            loadLeftFragment();
-          })
+        
       });
     });}
   )();
@@ -36,7 +36,8 @@ function uploadData() {
       'chinese': chinese,
       'pinyin': pinyin,
       'audio': 'random',
-      'seq': 2
+      'seq': 2,
+      'timestamp': new Date()
     })
     .then(function (docRef) {
       console.log("Document written with ID: ", docRef.id);
@@ -46,13 +47,17 @@ function uploadData() {
     });
 }
 
-
+function removeAllChilds (cell) {
+	while ( cell.hasChildNodes() ) { cell.removeChild( cell.firstChild ); } 
+}
 
 function loadLeftFragment(){
   var leftBody = document.getElementById("left");
+  removeAllChilds(leftBody);
   for(var i=0; i<chinese_sentence.length; i++){
      var paragraph = document.createElement('p');
-     paragraph.textContent = 'A : ' + chinese_sentence[i];
+     paragraph.className += ' sentence';
+     paragraph.textContent = chinese_sentence[i];
      leftBody.appendChild(paragraph);
   }
 }
@@ -70,8 +75,9 @@ function objToString(obj) {
 function objToChinese(obj){
   var str = '';
   for (var p in obj) {
-    if(obj.hasOwnProperty(p) && p=="chinese"){
-      str += obj[p] + '\n';
+    if(obj.hasOwnProperty(p) && (p=="chinese" || p=="korean" || p=="pinyin")){
+      str += p + ' : ';
+      str += obj[p] + ' , ';
     }
   }
   return str;
