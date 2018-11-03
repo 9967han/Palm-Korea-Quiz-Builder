@@ -1,3 +1,4 @@
+
 var db = firebase.firestore();
 var chinese_sentence = [];
 //데이터 불러오기
@@ -16,7 +17,6 @@ var chinese_sentence = [];
             })
 	    loadLeftFragment();
           })
-        
       });
     });}
   )();
@@ -72,7 +72,7 @@ function objToString(obj) {
   return str;
 }
 
-function objToChinese(obj){
+ function objToChinese(obj){
   var str = '';
   for (var p in obj) {
     if(obj.hasOwnProperty(p) && (p=="chinese" || p=="korean" || p=="pinyin")){
@@ -81,4 +81,8 @@ function objToChinese(obj){
     }
   }
   return str;
+}
+
+export default {
+  uploadData
 }
