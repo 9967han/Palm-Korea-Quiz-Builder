@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible">
+  <title>팜코리아 문제 제작 도구</title>
+  <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css" />
+  <style>
+    img {
+      display: inline-block;
+    }
+
+    .off-canvas-wrapper,
+    .off-canvas-wrapper-inner {
+      min-height: 100%;
+    }
+    </style>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+  <link rel="stylesheet" href="css/editor.css" />
+  <script src="js/editor.js"></script>
+</head>
+
+<body>
+  <div class="off-canvas-wrapper">
+    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+      <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas data-position="left">
+        <div class="row column">
+          <br />
+          <img class="thumbnail" src="http://palmchinese.cafe24.com/img/comm/logo.png" />
+          <h5>목차</h5>
+
+          <ul class="vertical menu drilldown" data-drilldown data-animate-height="true" data-scroll-top="true">
+            <li><a href="#">챕터1</a></li>
+            <li>
+              <a href="#">챕터2</a>
+              <ul class="menu vertical nested">
+                <li><a href="#">본문</a></li>
+                <li><a href="#">단어</a></li>
+                <li><a href="#">구문</a></li>
+                <li><a href="#">연습</a></li> <!-- 본문, 단어, 구문 중에 하나 -->
+              </ul>
+            </li>
+            <li><a href="#">챕터3</a></li>
+            <li><a href="#">챕터4</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="off-canvas-content" data-off-canvas-content>
+        <div class="title-bar hide-for-large">
+          <div class="title-bar-left">
+            <button class="menu-icon" type="button" data-open="my-info"></button>
+            <span class="title-bar-title">팜코리아</span>
+
+          </div>
+
+        </div>
+        <div class="callout primary">
+          <div class="row column">
+            <h1 id="book-title">책 제목</h1>
+            <p class="lead">
+            </p>
+          </div>
+        </div>
+        <div id="left">
+          <div class="chat-body" id="chat-body">
+            <div class="me">
+              <div class="sender-info">
+                <span class="fa-circle"></span>
+                <span class="name">A or B</span>
+                <span class="date" align="center">1</span>
+              </div>
+              <div class="message">
+                <div class="text">
+                  대화 내용이 들어갈 자리.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="right">
+          <form action="#" id="packet">
+            index: <span id="index">1</span><br>
+            한자 입력:<br>
+            <textarea id="chinese" COLS=70 ROWS=4></textarea><br>
+            한국어 입력:<br>
+            <textarea id="korean" COLS=70 ROWS=4></textarea><br>
+            병음 입력:<br>
+            <textarea id="pinyin" COLS=70 ROWS=4 disabled></textarea><br>
+            음성파일 입력: <input type="file" id="file" accept=".m4a" /> <br>
+            <audio id="player" controls></audio> <br>
+            <!-- <div id="visualizer_wrapper">
+         <canvas id='canvas' width="800" height="350"></canvas>
+      </div> -->
+            <input type="button" value="녹음하기" id="start"></button>
+            <input type="button" value="녹음종료" id="stop"></button>
+            <a id="download">녹음파일 다운</a>
+            <br><br>
+            <input type="button" value="제출하기" id="submit"></button>
+          </form>
+        </div>
+        <hr />
+      </div>
+    </div>
+  </div>
+  <script>
+    $(document).foundation();
+    updateConversation();
+  </script>
+
+</body>
+
+</html>
