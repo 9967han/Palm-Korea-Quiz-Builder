@@ -1,9 +1,7 @@
 import to_pinyin from 'chinese-to-pinyin';
-import visualize from './audio_visualizer';
 import firebase_util from './firebase_util';
 
-
-function convert () {
+function convert() {
     const chinese = document.getElementById('chinese').value;
     const pinyin = to_pinyin(chinese);
     document.getElementById('pinyin').value = pinyin;
@@ -75,7 +73,7 @@ document.getElementById('player').onplay = function () {
     // visualize(document.getElementById('player'));
 }
 
-document.getElementById('submit').onclick = () => { 
+document.getElementById('submit').onclick = () => {
     console.log('submit');
     firebase_util.uploadData();
 }
