@@ -19,8 +19,6 @@ let stopped = false;
 const downloadLink = document.getElementById('download');
 const stopButton = document.getElementById('stop');
 
-
-
 stopButton.addEventListener('click', function () {
     console.log('stop');
     shouldStop = true;
