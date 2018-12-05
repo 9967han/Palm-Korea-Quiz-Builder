@@ -1,57 +1,14 @@
 <html>
 
 <head>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
-    <script>
-        AWS.config.update({
-        region: "ap-northeast-2",
-        endpoint: "dynamodb.ap-northeast-2.amazonaws.com",
-        // accessKeyId default can be used while using the downloadable version of DynamoDB.
-        // For security reasons, do not store AWS Credentials in your files. Use Amazon Cognito instead.
-        accessKeyId: "AKIAJX6RIBD2T7GXJSLA",
-        // secretAccessKey default can be used while using the downloadable version of DynamoDB.
-        // For security reasons, do not store AWS Credentials in your files. Use Amazon Cognito instead.
-        secretAccessKey: "i+Eeednr7qYyjmR0ZdiSJ6iBac9EjjsRXH9G9A0P"
-      });
-
-      var dynamodb = new AWS.DynamoDB();
-
-      function createMovies() {
-        var params = {
-          TableName: "Movies",
-          KeySchema: [
-            { AttributeName: "year", KeyType: "HASH" },
-            { AttributeName: "title", KeyType: "RANGE" }
-          ],
-          AttributeDefinitions: [
-            { AttributeName: "year", AttributeType: "N" },
-            { AttributeName: "title", AttributeType: "S" }
-          ],
-          ProvisionedThroughput: {
-            ReadCapacityUnits: 5,
-            WriteCapacityUnits: 5
-          }
-        };
-
-        dynamodb.createTable(params, function(err, data) {
-          if (err) {
-            document.getElementById("textarea").innerHTML =
-              "Unable to create table: " +
-              "\n" +
-              JSON.stringify(err, undefined, 2);
-          } else {
-            document.getElementById("textarea").innerHTML =
-              "Created table: " + "\n" + JSON.stringify(data, undefined, 2);
-          }
-        });
-      }
-    </script>
+  <script src="js/main.ts">
+  </script>
 </head>
 
 <body>
-    <input id="createTableButton" type="button" value="Create Table" onclick="createMovies();" />
-    <br /><br />
-    <textarea readonly id="textarea" style="width:400px; height:800px"></textarea>
+  <input id="createTableButton" type="button" value="Create Table" onclick="Palm.getBook('태근이의 중국어 꿀팁').then(data => document.getElementById('textarea').innerText = JSON.stringify(data, null, 2));" />
+  <br /><br />
+  <textarea readonly id="textarea" style="width:400px; height:800px"></textarea>
 </body>
 
 </html>
