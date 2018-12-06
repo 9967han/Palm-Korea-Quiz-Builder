@@ -70,17 +70,15 @@ function getBook(title: string) {
     }
   };
 
-  return new Promise((resolve, reject) => {
     docClient.get(params, function(err, data) {
       if (err) {
-        reject(
+        console.log(
           "Unable to read item. Error JSON:" + JSON.stringify(err, null, 2)
         );
       } else {
-        resolve(data);
+        console.log(data);
       }
     });
-  });
 }
 
 function getConversation(bookTitle: string, chapter: number, example: number) {

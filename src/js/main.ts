@@ -1,5 +1,5 @@
 import { Book, Example } from "./type";
-
+import '@babel/polyfill';
 import * as AWS from "aws-sdk";
 import * as AWSKey from "./key";
 

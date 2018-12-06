@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/LunaTK/Palm-Korea-Quiz-Builder#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "aws-sdk": "^2.369.0",
     "chinese-to-pinyin": "^0.1.6",
     "foundation-sites": "^6.5.0",
     "jquery": "^3.3.1",
+    "npx": "^10.2.0",
     "parcel": "^1.10.3"
   },
   "devDependencies": {

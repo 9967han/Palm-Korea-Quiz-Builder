@@ -24,7 +24,6 @@ stopButton.addEventListener('click', function () {
     shouldStop = true;
 });
 
-
 var handleSuccess = function (stream) {
     const recordedChunks = [];
     const mediaRecorder = new MediaRecorder(stream, {
@@ -52,7 +51,6 @@ var handleSuccess = function (stream) {
     console.log('mediaRecorder start');
     mediaRecorder.start(1000);
 };
-
 
 
 document.getElementById('start').onclick = () => {

@@ -49,19 +49,20 @@
         </div>
         <div id="book-container" class="row small-up-2 medium-up-3 large-up-4">
           <div width="500px" class="column">
-            <img class="thumbnail" src="resource/plus-button.png" onclick="createBook()" />
+            <input type="file" name="newBookImg" style="display: none" onchange="Palm.readURL(this)">
+            <img class="thumbnail" src="resource/plus-button.png" onclick="document.all.newBookImg.click()">
             <h5>새로운 책 만들기</h5>
           </div>
           <div class="column">
-            <img class="thumbnail" src="http://palmchinese.cafe24.com/img/main/main_lecture01.jpg" />
+            <img class="thumbnail" src="http://palmchinese.cafe24.com/img/main/main_lecture01.jpg"  onclick="Palm.goBookInfo()"/>
             <h5>나의 겁없는 중국생활 중국어(먹기편)</h5>
           </div>
           <div class="column">
-            <img class="thumbnail" src="http://palmchinese.cafe24.com/img/main/main_lecture01_02.jpg">
+            <img class="thumbnail" src="http://palmchinese.cafe24.com/img/main/main_lecture01_02.jpg"  onclick="Palm.goBookInfo()">
             <h5>나의 겁없는 중국생활 중국어(걷기편)</h5>
           </div>
           <div class="column">
-            <img class="thumbnail" src="http://palmchinese.cafe24.com/img/main/main_lecture01_03.jpg">
+            <img class="thumbnail" src="http://palmchinese.cafe24.com/img/main/main_lecture01_03.jpg"  onclick="Palm.goBookInfo()">
             <h5>나의 겁없는 중국생활 중국어(살기편)</h5>
           </div>
         </div>
